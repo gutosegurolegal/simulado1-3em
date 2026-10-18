@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulado 1 – 3ª série EM – Environmental issues</title>
+<style>
+:root{--bg:#f3f6fa;--card:#fff;--ink:#1d2733;--muted:#5b6775;--brand:#17706a;--brand2:#0e4b47;--ok:#1e8449;--okbg:#e9f7ef;--bad:#c0392b;--badbg:#fdedec;--line:#d7dee6;--note:#fff8e1}
+*{box-sizing:border-box}
+button,input{font-family:inherit}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:18px;line-height:1.5}
+header{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;padding:18px 16px 16px}
+header .wrap{max-width:760px;margin:0 auto}
+header h1{margin:0;font-size:1.3rem;line-height:1.25}
+header .credit{margin-top:4px;font-size:.85rem;opacity:.9}
+main{max-width:760px;margin:0 auto;padding:16px}
+.card{background:var(--card);border-radius:14px;box-shadow:0 2px 10px rgba(14,60,56,.09);padding:18px;margin-bottom:16px}
+h2{font-size:1.15rem;margin:0 0 10px;color:var(--brand2)}
+label{display:block;font-weight:600;margin:12px 0 6px}
+input[type=text]{width:100%;font-size:1.05rem;padding:14px;border:2px solid var(--line);border-radius:10px}
+input[type=text]:focus{outline:none;border-color:var(--brand)}
+ul.instr{padding-left:22px;margin:6px 0}
+ul.instr li{margin:4px 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:12px 20px;font-size:1.05rem;font-weight:700;border-radius:12px;border:0;background:var(--brand);color:#fff;cursor:pointer}
+.btn:hover{background:var(--brand2)}
+.btn.sec{background:#e2efed;color:var(--brand2)}
+.btn.sec:hover{background:#cfe5e2}
+.btn:disabled{opacity:.45;cursor:default}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.row .btn{flex:1 1 140px}
+.progress{display:flex;justify-content:space-between;align-items:center;font-size:.95rem;color:var(--muted);margin-bottom:8px}
+.bar{height:10px;background:#dde9e7;border-radius:6px;overflow:hidden;margin-bottom:14px}
+.bar>div{height:100%;background:var(--brand);width:0;transition:width .3s}
+.tag{display:inline-block;font-size:.78rem;font-weight:700;color:var(--brand2);background:#e2efed;border-radius:999px;padding:3px 10px;margin-bottom:8px}
+.text{background:#f5faf9;border-left:5px solid var(--brand);border-radius:8px;padding:12px 14px;margin:6px 0 14px;white-space:pre-line;font-size:1rem}
+.text .tt{display:block;font-weight:700;color:var(--brand2);margin-bottom:6px;white-space:normal}
+.stem{font-weight:600;margin:0 0 12px}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;min-height:56px;padding:12px 14px;font-size:1rem;line-height:1.4;border:2px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--brand);background:#f2f9f8}
+.opt .l{flex:0 0 32px;height:32px;border-radius:50%;background:#e2efed;color:var(--brand2);font-weight:800;display:flex;align-items:center;justify-content:center}
+.opt:disabled{cursor:default}
+.opt.right{border-color:var(--ok);background:var(--okbg)}
+.opt.right .l{background:var(--ok);color:#fff}
+.opt.wrong{border-color:var(--bad);background:var(--badbg)}
+.opt.wrong .l{background:var(--bad);color:#fff}
+.fb{margin-top:14px;border-radius:12px;padding:14px;font-size:1rem}
+.fb.ok{background:var(--okbg);border:2px solid var(--ok)}
+.fb.bad{background:var(--badbg);border:2px solid var(--bad)}
+.fb strong{display:block;margin-bottom:4px}
+.fb .tipok{margin-top:8px;font-weight:600;color:var(--brand2)}
+.fb .copy{margin-top:10px;background:var(--note);border:1px dashed #c9a227;border-radius:8px;padding:8px 10px;font-weight:700}
+.score{font-size:2.4rem;font-weight:800;color:var(--brand2);margin:4px 0}
+.copylist{background:var(--note);border:1px dashed #c9a227;border-radius:10px;padding:12px 14px;white-space:pre-line;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(46px,1fr));gap:8px;margin-top:10px}
+.grid button{min-height:46px;border-radius:10px;border:2px solid var(--line);background:#fff;font-weight:700;font-size:1rem;cursor:pointer;color:var(--ink)}
+.grid button.r{background:var(--okbg);border-color:var(--ok)}
+.grid button.w{background:var(--badbg);border-color:var(--bad)}
+.grid button.cur{outline:3px solid var(--brand)}
+.muted{color:var(--muted);font-size:.9rem}
+.send{margin-top:12px;border-radius:10px;padding:10px 12px;font-weight:700;font-size:.98rem}
+.send.sent{background:var(--okbg);color:var(--ok);border:2px solid var(--ok)}
+.send.offline,.send.later{background:var(--note);color:#7a5c00;border:2px dashed #c9a227}
+.send.sending{background:#e2efed;color:var(--brand2);border:2px solid #b5d3cf}
+.hidden{display:none}
+footer{text-align:center;color:var(--muted);font-size:.8rem;padding:10px 16px 28px}
+@media (min-width:900px){body{font-size:19px}header h1{font-size:1.6rem}main{padding:24px}.card{padding:26px}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><h1>Simulado 1 – 3ª série EM – Environmental issues</h1><div class="credit">Prof. Augusto · Língua Inglesa · 4º bimestre 2026</div></div></header>
+<main>
+<section id="start" class="card">
+<h2>Instruções</h2>
+<ul class="instr">
+<li>São <strong>30 questões</strong> de múltipla escolha (A a E), como no ENEM.</li>
+<li>Leia o texto com atenção antes de responder. Use as dicas de leitura: cognatos, palavras conhecidas e contexto.</li>
+<li>Ao tocar em uma alternativa, a resposta fica <strong>travada</strong>: não dá para mudar.</li>
+<li>Se errar, aparece a resposta correta com uma explicação e uma dica. <strong>Copie no caderno</strong> cada questão que errar (tarefa).</li>
+<li>Seu progresso fica salvo neste aparelho. Pode fechar e continuar depois.</li>
+</ul>
+<label for="nome">Nome completo</label>
+<input type="text" id="nome" autocomplete="name" placeholder="Digite seu nome">
+<label for="turma">Turma</label>
+<input type="text" id="turma" placeholder="Ex.: 3º A">
+<p id="startMsg" class="muted"></p>
+<div class="row"><button class="btn" id="btnStart">Começar</button></div>
+</section>
+
+<section id="quiz" class="hidden">
+<div class="card">
+<div class="progress"><span id="pLabel">Questão 1 de 30</span><span id="pDone">0 respondidas</span></div>
+<div class="bar"><div id="pBar"></div></div>
+<span class="tag" id="qType"></span>
+<div class="text" id="qText"></div>
+<p class="stem" id="qStem"></p>
+<div class="opts" id="qOpts"></div>
+<div id="qFb"></div>
+<div class="row">
+<button class="btn sec" id="btnPrev">Anterior</button>
+<button class="btn" id="btnNext">Próxima</button>
+</div>
+</div>
+<div class="card">
+<h2>Ir para a questão</h2>
+<div class="grid" id="grid"></div>
+<div class="row"><button class="btn sec" id="btnFinish">Ver resultado</button></div>
+<p class="muted" id="finishMsg"></p>
+</div>
+</section>
+
+<section id="result" class="hidden">
+<div class="card">
+<h2>Resultado</h2>
+<div id="rWho" class="muted"></div>
+<div class="score" id="rScore"></div>
+<div id="rMsg"></div>
+<div id="rSend" class="send hidden" role="status" aria-live="polite"></div>
+</div>
+<div class="card" id="rWrongCard">
+<h2>Tarefa: copie no caderno</h2>
+<p class="muted">Copie cada questão que você errou, com a resposta correta, a explicação e a dica.</p>
+<div class="copylist" id="rWrong"></div>
+</div>
+<div class="card">
+<div class="row">
+<button class="btn sec" id="btnReview">Revisar questões</button>
+<button class="btn" id="btnRedo">Refazer</button>
+</div>
+<div class="row"><button class="btn sec" id="btnNew">Novo aluno (limpar tudo)</button></div>
+</div>
+</section>
+</main>
+<footer>Simulado 1 · funciona off-line · progresso salvo neste navegador · resultado final enviado ao professor</footer>
+<script>
+
+const SEND=(function(){
+  const ENDPOINT="", QUIZ="simulado1-3em";
+  const QK="resultados-fila-"+QUIZ, OK=QK+"-enviados";
+  let busy=false,failed=false,fns=[];
+  function get(k){try{return JSON.parse(localStorage.getItem(k))||[];}catch(e){return [];}}
+  function put(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+  function notify(){fns.forEach(f=>{try{f();}catch(e){}});}
+  function queued(id){return get(QK).some(r=>r.id===id);}
+  function status(id){
+    if(!id)return "none";
+    if(get(OK).indexOf(id)>=0)return "sent";
+    if(!queued(id))return "none";
+    if(!ENDPOINT)return "later";
+    if(busy)return "sending";
+    if(failed||navigator.onLine===false)return "offline";
+    return "sending";
+  }
+  function post(r){
+    const ctl=window.AbortController?new AbortController():null;
+    const t=setTimeout(()=>{if(ctl)ctl.abort();},20000);
+    const opt={method:"POST",mode:"no-cors",cache:"no-store",keepalive:true,
+      headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(r)};
+    if(ctl)opt.signal=ctl.signal;
+    return fetch(ENDPOINT,opt).finally(()=>clearTimeout(t));
+  }
+  async function flush(){
+    if(busy||!ENDPOINT||!get(QK).length){notify();return;}
+    if(navigator.onLine===false){failed=true;notify();return;}
+    busy=true;failed=false;notify();
+    for(const r of get(QK)){
+      try{await post(r);}catch(e){failed=true;break;}
+      put(QK,get(QK).filter(x=>x.id!==r.id));
+      const ok=get(OK);ok.push(r.id);put(OK,ok.slice(-100));
+    }
+    busy=false;notify();
+  }
+  function enqueue(r){
+    r.quiz=QUIZ;
+    const q=get(QK);if(!q.some(x=>x.id===r.id)){q.push(r);put(QK,q);}
+    flush();
+  }
+  window.addEventListener("online",flush);
+  setInterval(()=>{if(get(QK).length)flush();},60000);
+  setTimeout(flush,500);
+  return {enqueue,flush,status,onChange:f=>fns.push(f),pending:()=>get(QK).length,endpoint:ENDPOINT};
+})();
+const SEND_MSG={"sent": "Resultado enviado ao professor ✓", "offline": "Sem internet – será enviado quando conectar", "sending": "Enviando resultado ao professor…", "later": "Resultado salvo neste aparelho – será enviado ao professor depois"};
+
+const DATA = {"titulo": "Simulado 1 – 3ª série EM – Environmental issues", "tema": "Environmental issues", "texts": {"T1": {"title": "Texto 1 – Aviso", "body": "BEACH CLEAN-UP DAY\nSaturday, November 14th · 7:30 a.m. to 11 a.m.\nMeeting point: the lifeguard tower on Central Beach\n\nLast summer, volunteers collected more than 300 kg of trash from our beach in just one morning. Plastic bottles, straws and cigarette butts were the most common items.\n\n• Bring a water bottle, a hat and sunscreen.\n• Gloves and bags will be provided.\n• Students will receive a certificate of volunteer hours.\n\nRain? The event will be moved to the following Saturday.\nOrganized by the Environmental Club – State School students"}, "T2": {"title": "Texto 2 – Postagem em rede social", "body": "@marina.oceano · 2h\n\nYesterday my friends and I visited the mangrove near our school. Its water used to be clean, but now it is full of plastic bags. 😢 The fishermen told us that their catch has dropped a lot in recent years.\n\nMangroves protect the coast and are home to crabs, fish and birds. Their roots work like a natural filter.\n\nWe can't wait for the government to solve everything. Our class is starting a campaign to reduce plastic bags at the local market. Who's in? 🌿\n#SaveOurMangroves #PlasticFree #Environment"}, "T3": {"title": "Texto 3 – Infográfico (descrito em texto)", "body": "FAST FASHION IN NUMBERS\n(approximate figures, for classroom use)\n\n• 100 billion ......... pieces of clothing produced in the world every year\n• 7 ................... times a cheap T-shirt is worn, on average, before it is thrown away\n• 2,700 liters ........ of water to make one cotton T-shirt\n• Less than 1% ........ of old clothes are recycled into new clothes\n• 85% ................. of textiles end up in landfills or are burned\n\nThink before you buy: Do I really need it?"}, "T4": {"title": "Texto 4 – Notícia", "body": "STUDENTS TURN SCHOOL ROOFTOP INTO A GREEN SPACE\n\nSão Paulo coast – Students at a state school which is only two blocks from the sea have transformed an empty rooftop into a vegetable garden. The project, which started in March, uses rainwater that the students collect in old barrels.\n\n\"Our classrooms were really hot in the afternoon,\" says Rafael, 17, who leads the project. \"Now the plants absorb part of the heat, and the rooftop has become a place where we study and relax.\"\n\nThe vegetables are used in the school meals. The students now want to share their method with other schools in the region."}, "T5": {"title": "Texto 5 – Tirinha (diálogo)", "body": "Quadrinho 1 – LIA (em frente ao armário lotado): I have nothing to wear!\nQuadrinho 2 – BROTHER: Nothing? Your closet is so full that its door doesn't close!\nQuadrinho 3 – LIA: But I wore all these clothes last month. I need something new for the party.\nQuadrinho 4 – BROTHER: Here's an idea: swap clothes with your friends. Their closets are probably full too!\nQuadrinho 5 – LIA: Hmm... a clothing swap party? That's brilliant!"}, "T6": {"title": "Texto 6 – Trecho de artigo", "body": "THE HIDDEN COST OF CHEAP CLOTHES\n\nFast fashion is a business model which produces trendy clothes very quickly and at low prices. Many brands launch new collections every week, so consumers feel that their wardrobes are always out of date.\n\nHowever, the price tag does not show the real cost. The industry uses huge amounts of water, and many factories release toxic dyes into rivers. Workers, who are often young women in developing countries, may earn very little for long hours.\n\nThrift stores, whose popularity is growing among teenagers, offer an alternative: clothes that already exist get a second life. Eventually, buying less and choosing better may become the new trend."}, "T7": {"title": "Texto 7 – Carta do leitor", "body": "LETTER TO THE EDITOR\n\nI read your article about fast fashion, and I agree with most of it. Although cheap clothes help families who don't have much money, we can't ignore their impact on the planet.\n\nIn my neighborhood, a group of mothers repairs old school uniforms and donates them every February. This simple action saves money and reduces waste at the same time.\n\nI think schools should organize more projects like this. Small changes in our habits can make a big difference.\n\n— Júlia, 18, Ubatuba (SP)"}, "T8": {"title": "Texto 8 – Cartaz de campanha", "body": "BEFORE YOU THROW IT AWAY...\n\n♻ REPAIR it – sew on that missing button.\n♻ RESTYLE it – turn old jeans into shorts or a bag.\n♻ DONATE it – give clothes in good condition to people who need them.\n♻ BUY SECOND-HAND – visit a thrift store or a clothing swap.\n\nYour clothes, your choice, our planet."}, "G": {"title": "Uso da língua – possessive adjectives e relative pronouns", "body": ""}}, "questions": [{"n": 1, "text": "T1", "type": "Compreensão geral", "stem": "O aviso tem como principal objetivo", "options": ["proibir o uso de canudos plásticos na praia.", "anunciar a abertura de um clube de natação.", "convidar voluntários para uma ação de limpeza da praia.", "divulgar a venda de protetor solar para estudantes.", "informar o resultado de uma pesquisa sobre a qualidade da água."], "answer": 2, "explanation": "O título \"BEACH CLEAN-UP DAY\" (dia de limpeza da praia), a data, o ponto de encontro e as orientações (\"Bring...\") mostram que é um convite para voluntários. O texto cita canudos e protetor solar, mas não proíbe nem vende nada, e não fala de natação nem de qualidade da água.", "tip": "Finalidade do texto: observe o título e o gênero (aviso, convite). clean-up = limpeza."}, {"n": 2, "text": "T1", "type": "Informação específica", "stem": "De acordo com o aviso, os participantes", "options": ["receberão luvas e sacos para recolher o lixo.", "devem levar os próprios sacos de lixo.", "precisam pagar uma taxa de inscrição.", "devem chegar à praia depois das 11h.", "ganharão uma garrafa de água no final."], "answer": 0, "explanation": "\"Gloves and bags will be provided\" = luvas e sacos serão fornecidos (pela organização). Os participantes levam apenas garrafa de água, chapéu e protetor (\"Bring...\"). O texto não fala em taxa, e o evento termina às 11h (começa às 7h30).", "tip": "will be provided = serão fornecidos. gloves = luvas. bring = trazer/levar."}, {"n": 3, "text": "T1", "type": "Vocabulário em contexto", "stem": "No trecho \"Rain? The event will be moved to the following Saturday.\", entende-se que, em caso de chuva, o evento", "options": ["será cancelado definitivamente.", "acontecerá no mesmo dia, em um local coberto.", "começará mais cedo, no mesmo sábado.", "terá menos voluntários.", "será transferido para o sábado seguinte."], "answer": 4, "explanation": "\"Will be moved\" = será transferido/remarcado, e \"the following Saturday\" = o sábado seguinte. Não há menção a cancelamento, local coberto, mudança de horário ou número de voluntários.", "tip": "following = seguinte. will be moved = será transferido."}, {"n": 4, "text": "T2", "type": "Compreensão geral", "stem": "Ao escrever a postagem, Marina pretende principalmente", "options": ["divulgar a venda de peixes no mercado local.", "denunciar a poluição do mangue e mobilizar pessoas para uma campanha.", "culpar os pescadores pela poluição do mangue.", "convidar os amigos para uma festa na escola.", "explicar como se pesca caranguejo no mangue."], "answer": 1, "explanation": "Ela descreve o problema (\"full of plastic bags\") e chama as pessoas para agir: \"Our class is starting a campaign... Who's in?\" (Quem topa?). O mercado é o local da campanha, não de venda de peixes; os pescadores são vítimas do problema (a pesca caiu), não culpados.", "tip": "Who's in? = Quem topa? Postagens de campanha: problema + chamada para a ação."}, {"n": 5, "text": "T2", "type": "Possessive adjectives", "stem": "Em \"Its water used to be clean\", o possessivo \"Its\" refere-se a", "options": ["our school.", "my friends.", "the fishermen.", "the mangrove.", "the government."], "answer": 3, "explanation": "\"Its\" é o possessivo de coisa/lugar no singular (it). A frase anterior fala de \"the mangrove near our school\": a água é do mangue. \"My friends\" e \"the fishermen\" são plural (seria \"their\"); escola e governo não são o assunto da frase.", "tip": "its = dele/dela para coisa ou lugar (it). Ex.: the mangrove → its water."}, {"n": 6, "text": "T2", "type": "Referência pronominal", "stem": "No trecho \"Mangroves protect the coast and are home to crabs, fish and birds. Their roots work like a natural filter.\", o termo \"Their\" retoma", "options": ["mangroves.", "crabs, fish and birds.", "the fishermen.", "plastic bags.", "our class."], "answer": 0, "explanation": "Quem tem raízes (roots) são os mangues: \"Their roots\" = as raízes dos mangues. Caranguejos, peixes e aves também são plural, mas não têm raízes. Pescadores, sacolas e a turma não fazem sentido na frase.", "tip": "Reference question: troque o pronome pela resposta e veja se faz sentido (the mangroves' roots = faz sentido)."}, {"n": 7, "text": "T2", "type": "Inferência", "stem": "A frase \"We can't wait for the government to solve everything\" sugere que Marina", "options": ["confia que o governo vai resolver tudo sozinho.", "não se importa com o problema do mangue.", "acredita que os próprios cidadãos também devem agir.", "vai esperar uma resposta do governo antes de agir.", "acha que o problema do mangue já foi resolvido."], "answer": 2, "explanation": "\"We can't wait for the government to solve everything\" = não podemos esperar que o governo resolva tudo. Logo em seguida ela anuncia a campanha da turma, ou seja, ela defende a ação dos cidadãos. As outras alternativas dizem o contrário do texto.", "tip": "can't wait for someone to do something = não poder esperar que alguém faça algo."}, {"n": 8, "text": "T3", "type": "Informação específica", "stem": "De acordo com o infográfico, uma camiseta barata é usada, em média,", "options": ["cem vezes antes de ser reciclada.", "durante sete anos.", "apenas uma vez.", "cerca de sete vezes antes de ser jogada fora.", "até 85 vezes antes de ser doada."], "answer": 3, "explanation": "\"7 times a cheap T-shirt is worn, on average, before it is thrown away\": 7 vezes, em média, antes de ser jogada fora. \"100 billion\" é o total de peças produzidas por ano e \"85%\" é a porcentagem de tecidos que vão para aterros.", "tip": "thrown away = jogado fora (throw away). on average = em média. worn = usado/vestido (wear)."}, {"n": 9, "text": "T3", "type": "Informação específica", "stem": "Segundo o infográfico, a maior parte dos tecidos descartados", "options": ["é reciclada em roupas novas.", "vai para aterros sanitários ou é queimada.", "é doada para brechós.", "é usada para produzir algodão.", "volta para as fábricas para ser reaproveitada."], "answer": 1, "explanation": "\"85% of textiles end up in landfills or are burned\": 85% acabam em aterros (landfills) ou são queimados. Apenas \"less than 1%\" (menos de 1%) vira roupa nova. Doação a brechós e reaproveitamento pelas fábricas não aparecem no texto.", "tip": "landfill = aterro sanitário. end up = acabar (em algum lugar). burned = queimado."}, {"n": 10, "text": "T3", "type": "Inferência", "stem": "A pergunta final \"Do I really need it?\" tem a função de", "options": ["convencer o leitor a comprar mais roupas baratas.", "ensinar o leitor a lavar roupas de algodão.", "anunciar uma liquidação de camisetas.", "explicar como funciona a reciclagem de tecidos.", "levar o leitor a refletir antes de comprar uma roupa nova."], "answer": 4, "explanation": "Ela vem depois de \"Think before you buy\" (pense antes de comprar) e dos números negativos da moda rápida: o objetivo é fazer o leitor pensar se precisa mesmo da peça. O infográfico critica o consumo excessivo, não incentiva compras nem dá instruções de lavagem ou reciclagem.", "tip": "Pergunta retórica = convida à reflexão. Do I really need it? = Eu realmente preciso disso?"}, {"n": 11, "text": "T4", "type": "Compreensão geral", "stem": "A notícia relata principalmente", "options": ["a construção de uma nova escola perto do mar.", "a transformação do terraço de uma escola em uma horta pelos estudantes.", "uma enchente que atingiu as salas de aula.", "a proibição de hortas em prédios públicos.", "a venda das verduras produzidas pela escola."], "answer": 1, "explanation": "O título (\"Students turn school rooftop into a green space\") e o primeiro parágrafo resumem o fato: os alunos transformaram um terraço vazio em horta. A escola já existia, a água da chuva é usada na horta (não houve enchente) e as verduras vão para a merenda, não para venda.", "tip": "Em notícias, o título e o 1º parágrafo trazem o fato principal (lead). rooftop = terraço/telhado."}, {"n": 12, "text": "T4", "type": "Relative pronouns", "stem": "Em \"says Rafael, 17, who leads the project\", o pronome relativo \"who\" refere-se a", "options": ["the project.", "the plants.", "the school meals.", "other schools.", "Rafael."], "answer": 4, "explanation": "\"Who\" retoma pessoas: quem lidera o projeto é Rafael. Projeto, plantas, merenda e escolas são coisas; para elas o texto usa \"which\" ou \"that\".", "tip": "who = pessoas · which = coisas/animais · that = pessoas ou coisas."}, {"n": 13, "text": "T4", "type": "Relative pronouns", "stem": "Em \"the rooftop has become a place where we study and relax\", o relativo \"where\" foi usado porque", "options": ["retoma um lugar (a place).", "retoma uma pessoa (Rafael).", "indica um momento no tempo.", "introduz uma pergunta direta.", "indica posse."], "answer": 0, "explanation": "\"Where\" é o relativo de lugar: \"a place where we study\" = um lugar onde estudamos. Pessoa pede \"who\", tempo pede \"when\", posse pede \"whose\", e aqui não há pergunta (é uma afirmação).", "tip": "where = onde (lugar) · when = quando (tempo) · whose = cujo (posse)."}, {"n": 14, "text": "T4", "type": "Informação específica", "stem": "De acordo com Rafael, antes do projeto,", "options": ["os estudantes já comiam verduras da horta.", "a escola não tinha um terraço.", "o terraço era usado para as aulas.", "as salas de aula ficavam muito quentes à tarde.", "a merenda era servida no terraço."], "answer": 3, "explanation": "\"Our classrooms were really hot in the afternoon\" = nossas salas eram muito quentes à tarde. A horta é nova (começou em março), e o terraço estava vazio (\"an empty rooftop\"), então não era usado para aulas nem para a merenda.", "tip": "were (passado) mostra como era antes. absorb the heat = absorver o calor (cognato)."}, {"n": 15, "text": "T5", "type": "Inferência", "stem": "O humor da tirinha está no fato de que Lia", "options": ["não gosta de ir a festas.", "perdeu todas as roupas em uma mudança.", "diz que não tem nada para vestir, mas tem o armário lotado de roupas.", "pede ao irmão que compre roupas novas para ela.", "tem o armário vazio, mas diz que tem roupas demais."], "answer": 2, "explanation": "Lia diz \"I have nothing to wear!\", mas o irmão mostra que o armário está tão cheio que a porta nem fecha. A graça é a contradição. A última alternativa inverte a situação, e as outras não aparecem na tirinha.", "tip": "Humor em tirinha: procure a contradição entre o que o personagem diz e a realidade."}, {"n": 16, "text": "T5", "type": "Vocabulário em contexto", "stem": "Na sugestão do irmão, \"swap clothes with your friends\", o verbo \"swap\" significa", "options": ["vender.", "lavar.", "costurar.", "jogar fora.", "trocar."], "answer": 4, "explanation": "O contexto ajuda: os armários dos amigos também estão cheios, e Lia fala em \"clothing swap party\" (festa de troca de roupas). Ela não vai vender, lavar, costurar nem descartar, e sim trocar peças.", "tip": "swap = trocar. clothing swap = troca de roupas (alternativa à fast fashion)."}, {"n": 17, "text": "T5", "type": "Possessive adjectives", "stem": "No quadrinho 4, em \"Their closets are probably full too!\", \"Their\" refere-se", "options": ["a Lia e ao irmão.", "aos amigos de Lia.", "às roupas novas de Lia.", "aos pais de Lia.", "às lojas de roupa."], "answer": 1, "explanation": "A frase anterior é \"swap clothes with your friends\": os armários que também estão cheios são os dos amigos dela. Lia e o irmão estão falando (seria \"our\"), roupas e lojas não têm armários, e os pais não são citados.", "tip": "their = deles/delas (plural). Procure o \"dono\" no plural na frase anterior."}, {"n": 18, "text": "T6", "type": "Compreensão geral", "stem": "O texto tem como ideia central", "options": ["mostrar que as roupas baratas têm custos ambientais e sociais que não aparecem no preço.", "ensinar como abrir uma loja de roupas.", "elogiar as marcas que lançam coleções toda semana.", "defender que os brechós vendem roupas de baixa qualidade.", "comparar o preço das roupas em diferentes países."], "answer": 0, "explanation": "O título (\"The hidden cost of cheap clothes\" = o custo escondido das roupas baratas) e a frase \"the price tag does not show the real cost\" resumem a ideia: há impactos na água, nos rios e nos trabalhadores. O texto critica as coleções semanais e apresenta os brechós como alternativa positiva.", "tip": "hidden = escondido. price tag = etiqueta de preço. Título + 1ª frase de cada parágrafo = ideia central."}, {"n": 19, "text": "T6", "type": "Relative pronouns", "stem": "Em \"Thrift stores, whose popularity is growing among teenagers, offer an alternative\", o pronome \"whose\" indica", "options": ["um lugar onde os adolescentes moram.", "uma pessoa que trabalha no brechó.", "posse: a popularidade dos brechós.", "o momento em que os brechós abriram.", "uma pergunta sobre quem compra no brechó."], "answer": 2, "explanation": "\"Whose\" = cujo(a): liga o dono (thrift stores) ao que pertence a ele (popularity). Lugar seria \"where\", pessoa \"who\", tempo \"when\"; e não há pergunta, é uma afirmação.", "tip": "whose = cujo/cuja (posse). thrift store = brechó."}, {"n": 20, "text": "T6", "type": "Cognatos e falsos cognatos", "stem": "No último parágrafo, a palavra \"Eventually\" significa", "options": ["de vez em quando, ocasionalmente.", "imediatamente.", "raramente.", "com o tempo, no fim das contas.", "nunca."], "answer": 3, "explanation": "\"Eventually\" é falso cognato: significa \"com o tempo, finalmente, no fim\". O autor diz que, com o tempo, comprar menos pode virar tendência. \"Eventualmente\" (de vez em quando) em inglês é \"occasionally\" ou \"sometimes\".", "tip": "Falso cognato: eventually = finalmente/com o tempo ≠ eventualmente (occasionally)."}, {"n": 21, "text": "T6", "type": "Conectivos", "stem": "No início do segundo parágrafo, o conectivo \"However\" estabelece uma relação de", "options": ["adição: acrescenta mais um exemplo de marca famosa.", "causa: explica por que as roupas são baratas.", "conclusão: resume tudo o que foi dito no texto.", "contraste: opõe o preço baixo das roupas ao seu custo real.", "tempo: indica quando as coleções são lançadas."], "answer": 3, "explanation": "\"However\" = no entanto, porém. O 1º parágrafo fala dos preços baixos; o 2º começa com \"However\" para mostrar o outro lado: o custo real é alto. Adição seria \"also/in addition\", causa \"because\", conclusão \"so/therefore\".", "tip": "however = no entanto (contraste) · also = também · because = porque · so = então."}, {"n": 22, "text": "T7", "type": "Compreensão geral", "stem": "Na carta, Júlia defende que", "options": ["as famílias não devem comprar roupas baratas em nenhuma situação.", "o artigo sobre fast fashion estava totalmente errado.", "ações simples na comunidade e na escola podem reduzir o impacto da moda no planeta.", "as escolas devem proibir o uso de uniformes.", "apenas as grandes marcas podem resolver o problema."], "answer": 2, "explanation": "Júlia dá o exemplo das mães que consertam e doam uniformes e conclui: \"schools should organize more projects like this. Small changes in our habits can make a big difference\". Ela reconhece que roupas baratas ajudam famílias, concorda com a maior parte do artigo e valoriza os uniformes reaproveitados.", "tip": "Carta do leitor = opinião. Procure \"I think\", \"I agree\", \"should\" para achar a posição do autor."}, {"n": 23, "text": "T7", "type": "Conectivos", "stem": "Em \"Although cheap clothes help families who don't have much money, we can't ignore their impact on the planet\", o conectivo \"Although\" pode ser substituído, sem mudança de sentido, por", "options": ["Even though", "Because", "So", "For example", "As a result"], "answer": 0, "explanation": "\"Although\" = embora (concessão): reconhece um ponto (roupas baratas ajudam) e apresenta a ideia contrária (não podemos ignorar o impacto). \"Even though\" tem o mesmo sentido. \"Because\" indica causa, \"So\" e \"As a result\", consequência, e \"For example\", exemplo.", "tip": "although = even though = embora (concessão)."}, {"n": 24, "text": "T7", "type": "Referência pronominal", "stem": "Em \"This simple action saves money and reduces waste at the same time\", a expressão \"This simple action\" retoma", "options": ["a leitura do artigo sobre fast fashion.", "a compra de uniformes novos todo mês de fevereiro.", "a organização de projetos pela escola.", "o uso de roupas baratas pelas famílias.", "o conserto e a doação de uniformes escolares antigos pelas mães."], "answer": 4, "explanation": "\"This\" retoma a ideia da frase anterior: \"a group of mothers repairs old school uniforms and donates them\". Os uniformes são consertados e doados, não comprados; os projetos escolares só aparecem depois, como sugestão.", "tip": "this/these retomam uma ideia já citada; olhe a frase anterior. repair = consertar. waste = desperdício/lixo."}, {"n": 25, "text": "T8", "type": "Vocabulário em contexto", "stem": "No cartaz, a orientação \"BUY SECOND-HAND\" recomenda", "options": ["comprar duas peças pelo preço de uma.", "comprar roupas usadas.", "comprar roupas feitas à mão.", "comprar roupas apenas às segundas-feiras.", "comprar roupas novas pela internet."], "answer": 1, "explanation": "\"Second-hand\" = de segunda mão, usado. O próprio cartaz explica: \"visit a thrift store or a clothing swap\" (brechó ou troca de roupas). Não tem relação com promoção \"leve 2\", com \"handmade\" (feito à mão), com \"Monday\" (segunda-feira) nem com roupas novas.", "tip": "second-hand = usado, de segunda mão. handmade = feito à mão."}, {"n": 26, "text": "T8", "type": "Inferência", "stem": "O objetivo principal do cartaz é", "options": ["incentivar formas de prolongar a vida das roupas antes de descartá-las.", "ensinar a costurar roupas novas a partir do zero.", "anunciar a inauguração de uma loja de jeans.", "pedir dinheiro para uma instituição de caridade.", "proibir a compra de qualquer roupa nova."], "answer": 0, "explanation": "O título \"BEFORE YOU THROW IT AWAY...\" (antes de jogar fora) e os verbos no imperativo (repair, restyle, donate, buy second-hand) mostram alternativas ao descarte. O cartaz fala de pregar um botão, não de costurar roupas do zero; não anuncia loja, não pede dinheiro e não proíbe nada.", "tip": "Imperativo (repair, donate...) = dar instruções/conselhos em campanhas. throw away = jogar fora."}, {"n": 27, "text": "G", "type": "Possessive adjectives", "stem": "Leia: \"The students planted 50 trees near the river. Now ______ school is greener and cooler.\" Assinale a alternativa que completa corretamente a frase.", "options": ["his", "her", "they", "their", "them"], "answer": 3, "explanation": "O \"dono\" da escola é \"the students\" (plural), então o possessivo é \"their\" (deles). \"His\" e \"her\" são singulares (dele/dela); \"they\" e \"them\" são pronomes pessoais e não podem vir antes de um substantivo.", "tip": "Possessive adjectives: my, your, his, her, its, our, their + substantivo."}, {"n": 28, "text": "G", "type": "Relative pronouns", "stem": "Assinale a alternativa que completa corretamente a frase: \"Volunteers ______ clean the beach every month are making a difference.\"", "options": ["which", "who", "where", "whose", "what"], "answer": 1, "explanation": "\"Volunteers\" são pessoas, por isso o relativo é \"who\" (\"that\" também seria possível, mas não está nas alternativas). \"Which\" é para coisas, \"where\" para lugares, \"whose\" indica posse e \"what\" não funciona como relativo depois de um substantivo.", "tip": "Pessoa → who (ou that). Ex.: People who recycle..."}, {"n": 29, "text": "G", "type": "Relative pronouns", "stem": "Assinale a alternativa que completa corretamente a frase: \"Reusable bags, ______ can be used hundreds of times, are better for the environment than plastic bags.\"", "options": ["who", "where", "whose", "when", "which"], "answer": 4, "explanation": "\"Reusable bags\" (sacolas reutilizáveis) são coisas, então usamos \"which\". Entre vírgulas, só \"which\" é aceito para coisas (não se usa \"that\" nesse caso). \"Who\" é para pessoas, \"where\" para lugar, \"whose\" para posse e \"when\" para tempo.", "tip": "Coisa → which (ou that, sem vírgulas). Ex.: Bags which can be reused..."}, {"n": 30, "text": "G", "type": "Possessive adjectives", "stem": "Assinale a frase em que o possessive adjective está empregado corretamente.", "options": ["Maria recycles his old notebooks every year.", "The activists raised they voices at the meeting.", "The company changed its packaging to reduce plastic waste.", "Our school has it's own recycling program.", "My brother and I donated ours old clothes."], "answer": 2, "explanation": "\"Its\" é o possessivo de \"the company\" (coisa/instituição): its packaging = a embalagem dela. Erros nas outras: Maria pede \"her\" (não \"his\"); \"they voices\" deveria ser \"their voices\"; \"it's\" significa \"it is\" (o certo é \"its own\"); \"ours\" não vem antes de substantivo (o certo é \"our old clothes\").", "tip": "its (possessivo) ≠ it's (= it is). our + substantivo; ours sozinho."}]};
+const KEY = "simulado1-3em-environmental-issues-v1";
+const L = "ABCDE";
+const Qs = DATA.questions, N = Qs.length;
+let st = load();
+function blank(){return {nome:"",turma:"",answers:{},cur:0,started:false,finished:false,subId:""};}
+function load(){try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&s.answers)return Object.assign(blank(),s);}catch(e){}return blank();}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
+const $=id=>document.getElementById(id);
+function show(id){["start","quiz","result"].forEach(s=>$(s).classList.toggle("hidden",s!==id));window.scrollTo(0,0);}
+function answered(){return Object.keys(st.answers).length;}
+function correctCount(){return Qs.reduce((a,q,i)=>a+(st.answers[i]===q.answer?1:0),0);}
+function el(tag,cls,txt){const e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e;}
+
+function initStart(){
+  $("nome").value=st.nome;$("turma").value=st.turma;
+  if(st.started){$("btnStart").textContent=answered()<N?"Continuar ("+answered()+"/"+N+")":"Ver resultado";}
+}
+$("btnStart").onclick=()=>{
+  const n=$("nome").value.trim(),t=$("turma").value.trim();
+  if(!n||!t){$("startMsg").textContent="Preencha seu nome e sua turma para começar.";$("startMsg").style.color="#c0392b";return;}
+  st.nome=n;st.turma=t;st.started=true;save();
+  if(st.finished){renderResult();show("result");}else{renderQ();show("quiz");}
+};
+
+function renderQ(){
+  const i=st.cur,q=Qs[i],t=DATA.texts[q.text];
+  $("pLabel").textContent="Questão "+(i+1)+" de "+N;
+  $("pDone").textContent=answered()+(answered()===1?" respondida":" respondidas");
+  $("pBar").style.width=(answered()/N*100)+"%";
+  $("qType").textContent=q.type;
+  const tx=$("qText");tx.innerHTML="";
+  if(t.body){tx.classList.remove("hidden");tx.appendChild(el("span","tt",t.title));tx.appendChild(document.createTextNode(t.body));}
+  else tx.classList.add("hidden");
+  $("qStem").textContent=(i+1)+". "+q.stem;
+  const box=$("qOpts");box.innerHTML="";
+  const chosen=st.answers[i];
+  q.options.forEach((o,k)=>{
+    const b=el("button","opt");b.type="button";
+    b.appendChild(el("span","l",L[k]));b.appendChild(el("span",null,o));
+    if(chosen!==undefined){b.disabled=true;if(k===q.answer)b.classList.add("right");else if(k===chosen)b.classList.add("wrong");}
+    b.onclick=()=>choose(k);
+    box.appendChild(b);
+  });
+  const fb=$("qFb");fb.innerHTML="";
+  if(chosen!==undefined){
+    if(chosen===q.answer){const d=el("div","fb ok");d.appendChild(el("strong",null,"Correto!"));d.appendChild(el("span",null,q.explanation));d.appendChild(el("div","tipok","Dica: "+q.tip));fb.appendChild(d);}
+    else{const d=el("div","fb bad");d.appendChild(el("strong",null,"Resposta incorreta. A correta é a letra "+L[q.answer]+": "+q.options[q.answer]));d.appendChild(el("span",null,q.explanation));d.appendChild(el("div","copy","Copie esta questão no caderno (tarefa). Dica: "+q.tip));fb.appendChild(d);}
+  }
+  $("btnPrev").disabled=i===0;
+  $("btnNext").textContent=i===N-1?"Ver resultado":"Próxima";
+  renderGrid();
+}
+function choose(k){
+  if(st.answers[st.cur]!==undefined)return;
+  st.answers[st.cur]=k;save();renderQ();
+  $("qFb").scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+function renderGrid(){
+  const g=$("grid");g.innerHTML="";
+  Qs.forEach((q,i)=>{const b=el("button",null,String(i+1));b.type="button";
+    const a=st.answers[i];if(a!==undefined)b.classList.add(a===q.answer?"r":"w");
+    if(i===st.cur)b.classList.add("cur");
+    b.setAttribute("aria-label","Questão "+(i+1));
+    b.onclick=()=>{st.cur=i;save();renderQ();window.scrollTo(0,0);};g.appendChild(b);});
+}
+$("btnPrev").onclick=()=>{if(st.cur>0){st.cur--;save();renderQ();window.scrollTo(0,0);}};
+$("btnNext").onclick=()=>{if(st.cur<N-1){st.cur++;save();renderQ();window.scrollTo(0,0);}else finish();};
+$("btnFinish").onclick=finish;
+function finish(){
+  const left=N-answered();
+  if(left>0){const nx=Qs.findIndex((q,i)=>st.answers[i]===undefined);
+    $("finishMsg").textContent="Ainda faltam "+left+" questões. Indo para a questão "+(nx+1)+".";
+    st.cur=nx;save();renderQ();window.scrollTo(0,0);return;}
+  st.finished=true;save();submitResult();renderResult();show("result");
+}
+// Envia o resultado uma única vez por tentativa (fila off-line em sender.py).
+function submitResult(){
+  if(!st.finished||st.subId||!st.nome)return;
+  const id=Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,10);
+  const wrong=Qs.map((q,i)=>i).filter(i=>st.answers[i]!==Qs[i].answer);
+  let resp="";for(let i=0;i<N;i++){const a=st.answers[i];resp+=(a===undefined?"-":L[a])+((i%5===4&&i<N-1)?" ":"");}
+  SEND.enqueue({id:id,nome:st.nome,turma:st.turma,acertos:correctCount(),total:N,
+    erradas:wrong.map(i=>i+1).join(", "),respostas:resp,ts:new Date().toISOString()});
+  st.subId=id;save();
+}
+function renderSend(){
+  const e=$("rSend"),s=SEND.status(st.subId);
+  if(s==="none"){e.classList.add("hidden");return;}
+  e.className="send "+s;e.textContent=SEND_MSG[s];
+}
+SEND.onChange(renderSend);
+function renderResult(){
+  const c=correctCount(),p=Math.round(c/N*100);
+  const d=new Date();
+  $("rWho").textContent=st.nome+" · "+st.turma+" · "+d.toLocaleDateString("pt-BR");
+  $("rScore").textContent=c+" / "+N+"  ("+p+"%)";
+  $("rMsg").textContent=p>=80?"Excelente! Você mandou muito bem.":p>=60?"Bom trabalho! Revise as questões que errou.":"Continue praticando: copie as questões erradas e revise com calma.";
+  const wrong=Qs.map((q,i)=>i).filter(i=>st.answers[i]!==Qs[i].answer);
+  if(!wrong.length){$("rWrong").textContent="Você não errou nenhuma questão. Parabéns!";}
+  else{
+    let s="Simulado 1 – "+DATA.tema+" – "+st.nome+" ("+st.turma+")\nQuestões erradas: "+wrong.map(i=>i+1).join(", ")+"\n\n";
+    wrong.forEach(i=>{const q=Qs[i];s+="Questão "+(i+1)+" – Resposta correta: "+L[q.answer]+") "+q.options[q.answer]+"\nPor quê: "+q.explanation+"\nDica: "+q.tip+"\n\n";});
+    $("rWrong").textContent=s.trim();
+  }
+  renderSend();
+}
+$("btnReview").onclick=()=>{st.cur=0;save();renderQ();show("quiz");};
+$("btnRedo").onclick=()=>{
+  if(!confirm("Refazer o simulado? Suas respostas serão apagadas (nome e turma ficam salvos)."))return;
+  const n=st.nome,t=st.turma;st=blank();st.nome=n;st.turma=t;st.started=true;save();renderQ();show("quiz");
+};
+$("btnNew").onclick=()=>{
+  if(!confirm("Começar com outro aluno? Nome, turma e respostas deste aparelho serão apagados."))return;
+  st=blank();save();initStart();$("btnStart").textContent="Começar";show("start");
+};
+initStart();
+if(st.started&&st.nome){ if(st.finished){submitResult();renderResult();show("result");} else {renderQ();show("quiz");} }
+</script>
+</body>
+</html>
