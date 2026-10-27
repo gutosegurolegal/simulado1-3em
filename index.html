@@ -51,6 +51,9 @@ ul.instr li{margin:4px 0}
 .fb strong{display:block;margin-bottom:4px}
 .fb .tipok{margin-top:8px;font-weight:600;color:var(--brand2)}
 .fb .copy{margin-top:10px;background:var(--note);border:1px dashed #c9a227;border-radius:8px;padding:8px 10px;font-weight:700}
+.gradetbl{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;margin-top:10px}
+.gradetbl div{border:2px solid var(--line);border-radius:8px;padding:6px 8px;font-size:.95rem;background:#fff}
+.gradetbl div.me{background:var(--okbg);border-color:var(--ok);font-weight:800}
 .score{font-size:2.4rem;font-weight:800;color:var(--brand2);margin:4px 0}
 .copylist{background:var(--note);border:1px dashed #c9a227;border-radius:10px;padding:12px 14px;white-space:pre-line;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95rem}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(46px,1fr));gap:8px;margin-top:10px}
@@ -118,6 +121,11 @@ footer{text-align:center;color:var(--muted);font-size:.8rem;padding:10px 16px 28
 <div id="rMsg"></div>
 <div id="rSend" class="send hidden" role="status" aria-live="polite"></div>
 </div>
+<div class="card">
+<h2>Tabela de acertos e nota</h2>
+<p class="muted">Cada questão vale o mesmo. A nota vai de 0 a 10 e a sua linha está destacada.</p>
+<div class="gradetbl" id="rTable"></div>
+</div>
 <div class="card" id="rWrongCard">
 <h2>Tarefa: copie no caderno</h2>
 <p class="muted">Copie cada questão que você errou, com a resposta correta, a explicação e a dica.</p>
@@ -136,7 +144,7 @@ footer{text-align:center;color:var(--muted);font-size:.8rem;padding:10px 16px 28
 <script>
 
 const SEND=(function(){
-  const ENDPOINT="", QUIZ="simulado1-3em";
+  const ENDPOINT="https://script.google.com/macros/s/AKfycbw04_Hq06YC8L8awEBOgx1YCA50eqW7zA5ArOOYk7EQNcTCDpOaEqd_AhMpzZqwh3tlig/exec", QUIZ="simulado1-3em";
   const QK="resultados-fila-"+QUIZ, OK=QK+"-enviados";
   let busy=false,failed=false,fns=[];
   function get(k){try{return JSON.parse(localStorage.getItem(k))||[];}catch(e){return [];}}
@@ -288,6 +296,7 @@ function renderResult(){
     wrong.forEach(i=>{const q=Qs[i];s+="Questão "+(i+1)+" – Resposta correta: "+L[q.answer]+") "+q.options[q.answer]+"\nPor quê: "+q.explanation+"\nDica: "+q.tip+"\n\n";});
     $("rWrong").textContent=s.trim();
   }
+  (function(){let h="";for(let k=N;k>=0;k--){const n=(Math.round(k/N*100)/10).toFixed(1).replace(".",",");h+='<div'+(k===c?' class="me"':'')+'>'+k+' acerto'+(k===1?'':'s')+' = nota '+n+'</div>';}$("rTable").innerHTML=h;})();
   renderSend();
 }
 $("btnReview").onclick=()=>{st.cur=0;save();renderQ();show("quiz");};
